@@ -27,13 +27,28 @@ int main() {
 
     if(opcao == 1){
         if (strcmp(tipo_alimento, "carboidrato") == 0) {
-
+            
             char nome_alimento[20];
             printf("Digite o nome do alimento: ");
             scanf("%s", nome_alimento);
 
+            int quantidade_em_estoque = -1;
+
+            int estoque_atual;
+            printf("Escreva o estoque alterado: ");
+            scanf("%d", &estoque_atual);
+
+            for (int i = 0; i < 3; i++) {
+                if (strcmp(nome_alimento, carboidratos[i]) == 0) {
+                    quantidade_em_estoque = quant_carboidratos[i];
+                    quant_carboidratos[i] = estoque_atual;
+                    printf("estoque atual: %d", quant_carboidratos[i]);
+                    break;
+                }
+            }
             
         }
+
 
     }else if (opcao == 2){
 
