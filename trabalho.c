@@ -47,8 +47,49 @@ int main() {
                 }
             }
             
-        }
+        }else if (strcmp(tipo_alimento, "proteina") == 0) {
+            
+            char nome_alimento[20];
+            printf("Digite o nome do alimento: ");
+            scanf("%s", nome_alimento);
 
+            int quantidade_em_estoque = -1;
+
+            int estoque_atual;
+            printf("Escreva o estoque alterado: ");
+            scanf("%d", &estoque_atual);
+
+            for (int i = 0; i < 3; i++) {
+                if (strcmp(nome_alimento, proteinas[i]) == 0) {
+                    quantidade_em_estoque = quant_proteinas[i];
+                    quant_proteinas[i] = estoque_atual;
+                    printf("estoque atual: %d", quant_proteinas[i]);
+                    break;
+                }
+            }
+            
+        }else if(strcmp(tipo_alimento, "lipideo") == 0) {
+            
+            char nome_alimento[20];
+            printf("Digite o nome do alimento: ");
+            scanf("%s", nome_alimento);
+
+            int quantidade_em_estoque = -1;
+
+            int estoque_atual;
+            printf("Escreva o estoque alterado: ");
+            scanf("%d", &estoque_atual);
+
+            for (int i = 0; i < 3; i++) {
+                if (strcmp(nome_alimento, lipideos[i]) == 0) {
+                    quantidade_em_estoque = quant_lipideos[i];
+                    quant_lipideos[i] = estoque_atual;
+                    printf("estoque atual: %d", quant_lipideos[i]);
+                    break;
+                }
+            }
+            
+        }
 
     }else if (opcao == 2){
 
