@@ -28,13 +28,13 @@ int main() {
                 printf("Digite o nome do alimento(pao, bolo, biscoito): ");
                 scanf("%s", nome_alimento);
 
-                int estoque_atual;
+                int estoque_alterado;
                 printf("Escreva o estoque alterado: ");
-                scanf("%d", &estoque_atual);
+                scanf("%d", &estoque_alterado);
 
                 for (int i = 0; i < 3; i++) {
                     if (strcmp(nome_alimento, carboidratos[i]) == 0) { // comparar o nome_alimento com o elemento na posição i da matriz carboidratos
-                        quant_carboidratos[i] = estoque_atual;
+                        quant_carboidratos[i] = estoque_alterado;
                         printf("estoque atual: %d", quant_carboidratos[i]);
                         break;
                     }
@@ -46,13 +46,13 @@ int main() {
                 printf("Digite o nome do alimento(carne, laticineos, ovo, peixe): ");
                 scanf("%s", nome_alimento);
 
-                int estoque_atual;
+                int estoque_alterado;
                 printf("Escreva o estoque alterado: ");
-                scanf("%d", &estoque_atual);
+                scanf("%d", &estoque_alterado);
 
                 for (int i = 0; i < 3; i++) {
                     if (strcmp(nome_alimento, proteinas[i]) == 0) {
-                        quant_proteinas[i] = estoque_atual;
+                        quant_proteinas[i] = estoque_alterado;
                         printf("estoque atual: %d", quant_proteinas[i]);
                         break;
                     }
@@ -66,11 +66,11 @@ int main() {
 
                 int estoque_atual;
                 printf("Escreva o estoque alterado: ");
-                scanf("%d", &estoque_atual);
+                scanf("%d", &estoque_alterado);
 
                 for (int i = 0; i < 3; i++) {
                     if (strcmp(nome_alimento, lipideos[i]) == 0) {
-                        quant_lipideos[i] = estoque_atual;
+                        quant_lipideos[i] = estoque_alterado;
                         printf("estoque atual: %d", quant_lipideos[i]);
                         break;
                     }
