@@ -7,17 +7,14 @@ int main() {
     printf("Digite 1 para alterar o estoque ou 2 para consultar o estoque: ");
     scanf("%d", &opcao);
     
-    int a = 10, b = 150, c = 120; // as variaveis foram adicionadas assim para que seu valor possa ser mudado depois
     char carboidratos[3][20] = {"bolo", "pao", "biscoito"};
-    int quant_carboidratos[3] = {a, b, c};
+    int quant_carboidratos[3] = {10, 150, 120};
 
-    int d = 90, e = 30, f = 200, g = 250;
     char proteinas[4][20] = {"carne", "peixe", "ovo", "laticineos"};
-    int quant_proteinas[4] = {d, e, f, g};
+    int quant_proteinas[4] = {90, 30, 200, 250};
 
-    int h = 30, k = 70, l = 50;
     char lipideos[3][20] = {"castanha", "oleo", "chocolate"};
-    int quant_lipideos[3] = {h, k, l};
+    int quant_lipideos[3] = {30, 70, 50};
 
 
     char tipo_alimento[20];  
