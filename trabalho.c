@@ -9,7 +9,7 @@ int main() {
     
     char carboidratos[3][20] = {"bolo", "pao", "biscoito"};
     int quant_carboidratos[3] = {10, 150, 120};
-hhhhh
+
     char proteinas[4][20] = {"carne", "peixe", "ovo", "laticineos"};
     int quant_proteinas[4] = {90, 30, 200, 250};
 
