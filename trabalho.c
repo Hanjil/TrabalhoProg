@@ -19,12 +19,12 @@ int main() {
     char lipideos[3][20] = {"castanha", "oleo", "chocolate"};
     int quant_lipideos[3] = {h, k, l};
 
-
-    char tipo_alimento[20];  
-    printf("Digite o tipo de alimento (carboidrato, proteina, lipideo): ");
-    scanf("%s", tipo_alimento);
-
         if(opcao == 1){
+
+            char tipo_alimento[20];  
+            printf("Digite o tipo de alimento (carboidrato, proteina, lipideo): ");
+            scanf("%s", tipo_alimento);
+
             if (strcmp(tipo_alimento, "carboidrato") == 0) { //a função confere se o que foi escrito bate com o tipo de alimento
                 
                 char nome_alimento[20];
@@ -82,6 +82,10 @@ int main() {
             }
 
         }else if (opcao == 2){
+
+            char tipo_alimento[20];  
+            printf("Digite o tipo de alimento (carboidrato, proteina, lipideo): ");
+            scanf("%s", tipo_alimento);
 
             if (strcmp(tipo_alimento, "carboidrato") == 0) {
                 
@@ -153,9 +157,93 @@ int main() {
                 printf("Tipo de alimento nao encontrado");
 
             }
-        
+
+        }else if(opcao == 3){
+
+            char tipo_alimento[20];  
+            printf("Digite o tipo de alimento (carboidrato, proteina, lipideo): ");
+            scanf("%s", tipo_alimento);
+
+            if(strcmp(tipo_alimento, "carboidrato") == 0) {
+
+                char alimento_adicionado[20];
+                printf("Digite o nome do alimento a ser adicionado: ");
+                scanf("%s", &alimento_adicionado);
+                
+                strcpy(carboidratos[3], alimento_adicionado); //função usada para adicionar um elemento na matriz de strings
+
+                int quant_adicionada;
+                printf("Digite a quantidade desse elemento: ");
+                scanf("%d", &quant_adicionada);
+                
+                int carboidratos_novo_elemento[4];
+
+                for(int i = 0; i < 4; i++){ //looping para adicionar um elemento no vetor
+                    if (i < 3){
+                    carboidratos_novo_elemento[i] = quant_carboidratos[i];
+                    }else{
+                        carboidratos_novo_elemento[i] = quant_adicionada;
+                    }
+                }
+            
+                for(int i = 0; i < 4; i++){
+                    printf("Quantidade de %s: %d\n", carboidratos[i], carboidratos_novo_elemento[i]);
+                }
+
+            }else if(strcmp(tipo_alimento, "proteina") == 0) {
+
+                char alimento_adicionado[20];
+                printf("Digite o nome do alimento a ser adicionado: ");
+                scanf("%s", &alimento_adicionado);
+                
+                strcpy(proteinas[3], alimento_adicionado); //função usada para adicionar um elemento na matriz de strings
+
+                int quant_adicionada;
+                printf("Digite a quantidade desse elemento: ");
+                scanf("%d", &quant_adicionada);
+                
+                int proteinas_novo_elemento[4];
+
+                for(int i = 0; i < 4; i++){ //looping para adicionar um elemento no vetor
+                    if (i < 3){
+                    proteinas_novo_elemento[i] = quant_proteinas[i];
+                    }else{
+                        proteinas_novo_elemento[i] = quant_adicionada;
+                    }
+                }
+            
+                for(int i = 0; i < 4; i++){
+                    printf("Quantidade de %s: %d\n", proteinas[i], proteinas_novo_elemento[i]);
+                }
+            }else if(strcmp(tipo_alimento, "lipideo") == 0) {
+
+                char alimento_adicionado[20];
+                printf("Digite o nome do alimento a ser adicionado: ");
+                scanf("%s", &alimento_adicionado);
+                
+                strcpy(lipideos[3], alimento_adicionado); //função usada para adicionar um elemento na matriz de strings
+
+                int quant_adicionada;
+                printf("Digite a quantidade desse elemento: ");
+                scanf("%d", &quant_adicionada);
+                
+                int lipideos_novo_elemento[4];
+
+                for(int i = 0; i < 4; i++){ //looping para adicionar um elemento no vetor
+                    if (i < 3){
+                    lipideos_novo_elemento[i] = quant_lipideos[i];
+                    }else{
+                        lipideos_novo_elemento[i] = quant_adicionada;
+                    }
+                }
+            
+                for(int i = 0; i < 4; i++){
+                    printf("Quantidade de %s: %d\n", lipideos[i], lipideos_novo_elemento[i]);
+                }
+            }
+
         }else{
-            printf("opcao nao consta");
+            printf("Opcao invalida");
         }
 
     return 0;
