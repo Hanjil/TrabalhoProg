@@ -4,7 +4,7 @@
 int main() {
 
     int opcao = 0;
-    printf("Digite 1 para alterar o estoque ou 2 para consultar o estoque: ");
+    printf("Digite 1 para alterar o estoque ou 2 para consultar o estoque ou 3 para adicionar ao estoque: ");
     scanf("%d", &opcao);
     
     int a = 10, b = 150, c = 120; // as variaveis foram adicionadas assim para que seu valor possa ser mudado depois
