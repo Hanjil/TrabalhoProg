@@ -15,7 +15,7 @@ Consulta de Estoque: O sistema permite ao usuário consultar o estoque atual de 
 
 Relatório de Produtos: O sistema pode gerar relatórios detalhados sobre os produtos em estoque. Esses relatórios incluem informações como o nome do produto, categoria, preço unitário e quantidade disponível.
 
-Personalização
+Personalização:
 Este sistema de controle de estoque para mercearia pode ser personalizado para atender às necessidades específicas de outros negócio. Sendo possível alterar a categoria dos produtos e o número inicial disponível. 
 
 
