@@ -4,8 +4,6 @@
 int main() {
 
     int opcao = 0;
-    printf("Digite 1 para alterar o estoque ou 2 para consultar o estoque ou 3 para adicionar ao estoque: ");
-    scanf("%d", &opcao);
     
     char carboidratos[3][20] = {"bolo", "pao", "biscoito"};
     int quant_carboidratos[3] = {10, 150, 120};
@@ -16,6 +14,13 @@ int main() {
     char lipideos[3][20] = {"castanha", "oleo", "chocolate"};
     int quant_lipideos[3] = {30, 70, 50};
 
+    while (1) {
+        printf("Digite 1 para alterar o estoque, 2 para consultar o estoque ou 3 para adicionar ao estoque, ou 0 para sair: ");
+        scanf("%d", &opcao);
+
+        if (opcao == 0) {
+            break;  // Saia do loop se o usuário escolher 0
+        }
         if(opcao == 1){
 
             char tipo_alimento[20];  
@@ -242,6 +247,6 @@ int main() {
         }else{
             printf("Opcao invalida");
         }
-
+    }
     return 0;
 }
