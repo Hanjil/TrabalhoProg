@@ -1,247 +1,156 @@
 #include <stdio.h>
 #include <string.h>
 
-int main() {
+void atualizarEstoque(int estoque[], char alimentos[][20], const char tipo_alimento[]) {
+    char nome_alimento[20];
 
+    printf("Digite o nome do alimento: ");
+    scanf("%s", nome_alimento);
+
+    int estoque_alterado;
+    printf("Escreva o estoque alterado: ");
+    scanf("%d", &estoque_alterado);
+
+    for (int i = 0; i < 3; i++) {
+        if (strcmp(nome_alimento, alimentos[i]) == 0) {
+            estoque[i] = estoque_alterado;
+            printf("Estoque atual de %s: %d\n", nome_alimento, estoque[i]);
+            return;
+        }
+    }
+}
+
+void verificarEstoque(const char tipo_alimento[], char alimentos[][20], int quantidades[], int tamanho) {
+    char nome_alimento[20];
+    printf("Digite o nome do alimento: ");
+    scanf("%s", nome_alimento);
+
+    int quantidade_em_estoque = -1;
+
+    for (int i = 0; i < tamanho; i++) {
+        if (strcmp(nome_alimento, alimentos[i]) == 0) {
+            quantidade_em_estoque = quantidades[i];
+            break;
+        }
+    }
+
+    if (quantidade_em_estoque >= 0) {
+        printf("Estoque de %s: %d\n", nome_alimento, quantidade_em_estoque);
+
+    } else {
+        printf("%s nao foi encontrado no estoque.\n", nome_alimento);
+    }
+}
+
+void adicionar_alimento(char tipo_alimento[], char alimentos[4][20], int quantidades[], int *quantidade_atual) {
+    char alimento_adicionado[20];
+    printf("Digite o nome do alimento a ser adicionado: ");
+    scanf("%s", alimento_adicionado);
+
+    strcpy(alimentos[3], alimento_adicionado);
+
+    int quant_adicionada;
+    printf("Digite a quantidade desse elemento: ");
+    scanf("%d", &quant_adicionada);
+
+    int novo_elemento[4];
+
+    for (int i = 0; i < 4; i++) {
+        if (i < 3) {
+            novo_elemento[i] = quantidades[i];
+        }else{
+            novo_elemento[i] = quant_adicionada;
+        }
+    }
+
+    for (int i = 0; i < 4; i++) {
+        printf("Quantidade de %s: %d\n", alimentos[i], novo_elemento[i]);
+    }
+    
+    // Atualizar as quantidades apenas se não ultrapassar o máximo
+    if (*quantidade_atual < 4) {
+        (*quantidade_atual)++;
+    }
+}
+
+int main(){
     int opcao = 0;
     
     char carboidratos[3][20] = {"bolo", "pao", "biscoito"};
     int quant_carboidratos[3] = {10, 150, 120};
 
-    char proteinas[4][20] = {"carne", "peixe", "ovo", "laticineos"};
-    int quant_proteinas[4] = {90, 30, 200, 250};
+    char proteinas[4][20] = {"carne", "peixe", "ovo"};
+    int quant_proteinas[4] = {90, 30, 200};
 
     char lipideos[3][20] = {"castanha", "oleo", "chocolate"};
     int quant_lipideos[3] = {30, 70, 50};
 
     while (1) {
-        printf("Digite 1 para alterar o estoque, 2 para consultar o estoque ou 3 para adicionar ao estoque, ou 0 para sair: ");
+        printf("Selecione uma opcao:\n [1] Alterar o estoque\n [2] Consultar o estoque\n [3] Adicionar ao estoque\n [0] Sair\n");
         scanf("%d", &opcao);
 
         if (opcao == 0) {
-            break;  // Saia do loop se o usuário escolher 0
+            break;  //Sai do loop se o usuário escolher 0
         }
+
         if(opcao == 1){
-
-            char tipo_alimento[20];  
-            printf("Digite o tipo de alimento (carboidrato, proteina, lipideo): ");
-            scanf("%s", tipo_alimento);
-
-            if (strcmp(tipo_alimento, "carboidrato") == 0) { //a função confere se o que foi escrito bate com o tipo de alimento
-                
-                char nome_alimento[20];
-                printf("Digite o nome do alimento(pao, bolo, biscoito): ");
-                scanf("%s", nome_alimento);
-
-                int estoque_alterado;
-                printf("Escreva o estoque alterado: ");
-                scanf("%d", &estoque_alterado);
-
-                for (int i = 0; i < 3; i++) {
-                    if (strcmp(nome_alimento, carboidratos[i]) == 0) { // comparar o nome_alimento com o elemento na posição i da matriz carboidratos
-                        quant_carboidratos[i] = estoque_alterado;
-                        printf("estoque atual: %d", quant_carboidratos[i]);
-                        break;
-                    }
-                }
-                
-            }else if (strcmp(tipo_alimento, "proteina") == 0) {
-                
-                char nome_alimento[20];
-                printf("Digite o nome do alimento(carne, laticineos, ovo, peixe): ");
-                scanf("%s", nome_alimento);
-
-                int estoque_alterado;
-                printf("Escreva o estoque alterado: ");
-                scanf("%d", &estoque_alterado);
-
-                for (int i = 0; i < 3; i++) {
-                    if (strcmp(nome_alimento, proteinas[i]) == 0) {
-                        quant_proteinas[i] = estoque_alterado;
-                        printf("estoque atual: %d", quant_proteinas[i]);
-                        break;
-                    }
-                }
-                
-            }else if(strcmp(tipo_alimento, "lipideo") == 0) {
-                
-                char nome_alimento[20];
-                printf("Digite o nome do alimento(oleo, castanha, chocolate): ");
-                scanf("%s", nome_alimento);
-
-                int estoque_atual;
-                printf("Escreva o estoque alterado: ");
-                scanf("%d", &estoque_alterado);
-
-                for (int i = 0; i < 3; i++) {
-                    if (strcmp(nome_alimento, lipideos[i]) == 0) {
-                        quant_lipideos[i] = estoque_alterado;
-                        printf("estoque atual: %d", quant_lipideos[i]);
-                        break;
-                    }
-                }
-                
-            }
-
-        }else if (opcao == 2){
-
             char tipo_alimento[20];  
             printf("Digite o tipo de alimento (carboidrato, proteina, lipideo): ");
             scanf("%s", tipo_alimento);
 
             if (strcmp(tipo_alimento, "carboidrato") == 0) {
-                
-                char nome_alimento[20];
-                printf("Digite o nome do alimento(pao, bolo, biscoito): ");
-                scanf("%s", nome_alimento);
+                atualizarEstoque(quant_carboidratos, carboidratos, tipo_alimento);
 
-                int quantidade_em_estoque = -1;
+            } else if (strcmp(tipo_alimento, "proteina") == 0) {
+                atualizarEstoque(quant_proteinas, proteinas, tipo_alimento);
 
-                for (int i = 0; i < 3; i++) {
-                    if (strcmp(nome_alimento, carboidratos[i]) == 0) {
-                        quantidade_em_estoque = quant_carboidratos[i];
-                        break;
-                    }
-                }
+            } else if (strcmp(tipo_alimento, "lipideo") == 0) {
+                atualizarEstoque(quant_lipideos, lipideos, tipo_alimento);
 
-                if (quantidade_em_estoque >= 0) {
-                    printf("Estoque de %s: %d\n", nome_alimento, quantidade_em_estoque);
-                } else {
-                    printf("%s nao foi encontrado no estoque.\n", nome_alimento);
-                }
-
-
-            }else if(strcmp(tipo_alimento, "proteina") == 0) {
-                
-                char nome_alimento[20];
-                printf("Digite o nome do alimento(carne, laticineos, ovo, peixe): ");
-                scanf("%s", nome_alimento);
-
-                int quantidade_em_estoque = -1;
-
-                for (int i = 0; i < 4; i++) {
-                    if (strcmp(nome_alimento, proteinas[i]) == 0) {
-                        quantidade_em_estoque = quant_proteinas[i];
-                        break;
-                    }
-                }
-
-                if (quantidade_em_estoque >= 0) {
-                    printf("Estoque de %s: %d\n", nome_alimento, quantidade_em_estoque);
-                }else {
-                    printf("%s nao foi encontrado no estoque.\n", nome_alimento);
-                }
-
-
-            }else if(strcmp(tipo_alimento, "lipideo") == 0) {
-                
-                char nome_alimento[20];
-                printf("Digite o nome do alimento(oleo, castanha, chocolate): ");
-                scanf("%s", nome_alimento);
-
-                int quantidade_em_estoque = -1;
-
-                for (int i = 0; i < 3; i++) {
-                    if (strcmp(nome_alimento, lipideos[i]) == 0) {
-                        quantidade_em_estoque = quant_lipideos[i];
-                        break;
-                    }
-                }
-
-                if (quantidade_em_estoque >= 0) {
-                    printf("Estoque de %s: %d\n", nome_alimento, quantidade_em_estoque);
-                }else {
-                    printf("%s nao foi encontrado no estoque.\n", nome_alimento);
-                }
-
-
-            }else{
-                printf("Tipo de alimento nao encontrado");
-
+            } else {
+                printf("Tipo de alimento nao encontrado.\n");
             }
 
-        }else if(opcao == 3){
 
+        }else if (opcao == 2){
             char tipo_alimento[20];  
             printf("Digite o tipo de alimento (carboidrato, proteina, lipideo): ");
             scanf("%s", tipo_alimento);
 
-            if(strcmp(tipo_alimento, "carboidrato") == 0) {
+            if (strcmp(tipo_alimento, "carboidrato") == 0) {
+                verificarEstoque(tipo_alimento, quant_carboidratos, quant_carboidratos, 4);
 
-                char alimento_adicionado[20];
-                printf("Digite o nome do alimento a ser adicionado: ");
-                scanf("%s", &alimento_adicionado);
-                
-                strcpy(carboidratos[3], alimento_adicionado); //função usada para adicionar um elemento na matriz de strings
+            } else if (strcmp(tipo_alimento, "proteina") == 0) {
+                verificarEstoque(tipo_alimento, quant_proteinas, quant_proteinas, 4);
 
-                int quant_adicionada;
-                printf("Digite a quantidade desse elemento: ");
-                scanf("%d", &quant_adicionada);
-                
-                int carboidratos_novo_elemento[4];
+            } else if (strcmp(tipo_alimento, "lipideo") == 0) {
+                verificarEstoque(tipo_alimento, lipideos, quant_lipideos, 4);
 
-                for(int i = 0; i < 4; i++){ //looping para adicionar um elemento no vetor
-                    if (i < 3){
-                    carboidratos_novo_elemento[i] = quant_carboidratos[i];
-                    }else{
-                        carboidratos_novo_elemento[i] = quant_adicionada;
-                    }
-                }
-            
-                for(int i = 0; i < 4; i++){
-                    printf("Quantidade de %s: %d\n", carboidratos[i], carboidratos_novo_elemento[i]);
-                }
+            } else {
+                printf("Tipo de alimento nao encontrado.\n");
+            }
 
-            }else if(strcmp(tipo_alimento, "proteina") == 0) {
 
-                char alimento_adicionado[20];
-                printf("Digite o nome do alimento a ser adicionado: ");
-                scanf("%s", &alimento_adicionado);
-                
-                strcpy(proteinas[3], alimento_adicionado); //função usada para adicionar um elemento na matriz de strings
+        }else if(opcao == 3){
+            char tipo_alimento[20];  
+            printf("Digite o tipo de alimento (carboidrato, proteina, lipideo): ");
+            scanf("%s", tipo_alimento);
 
-                int quant_adicionada;
-                printf("Digite a quantidade desse elemento: ");
-                scanf("%d", &quant_adicionada);
-                
-                int proteinas_novo_elemento[4];
+            int quant_atual_carboidratos;
+            int quant_atual_proteinas;
+            int quant_atual_lipideos;
 
-                for(int i = 0; i < 4; i++){ //looping para adicionar um elemento no vetor
-                    if (i < 3){
-                    proteinas_novo_elemento[i] = quant_proteinas[i];
-                    }else{
-                        proteinas_novo_elemento[i] = quant_adicionada;
-                    }
-                }
-            
-                for(int i = 0; i < 4; i++){
-                    printf("Quantidade de %s: %d\n", proteinas[i], proteinas_novo_elemento[i]);
-                }
-            }else if(strcmp(tipo_alimento, "lipideo") == 0) {
+            if (strcmp(tipo_alimento, "carboidrato") == 0) {
+                adicionar_alimento(tipo_alimento, carboidratos, quant_carboidratos, &quant_atual_carboidratos);
 
-                char alimento_adicionado[20];
-                printf("Digite o nome do alimento a ser adicionado: ");
-                scanf("%s", &alimento_adicionado);
-                
-                strcpy(lipideos[3], alimento_adicionado); //função usada para adicionar um elemento na matriz de strings
+            } else if (strcmp(tipo_alimento, "proteina") == 0) {
+                adicionar_alimento(tipo_alimento, proteinas, quant_proteinas, &quant_atual_proteinas);
 
-                int quant_adicionada;
-                printf("Digite a quantidade desse elemento: ");
-                scanf("%d", &quant_adicionada);
-                
-                int lipideos_novo_elemento[4];
+            } else if (strcmp(tipo_alimento, "lipideo") == 0) {
+                adicionar_alimento(tipo_alimento, lipideos, quant_lipideos, &quant_atual_lipideos);
 
-                for(int i = 0; i < 4; i++){ //looping para adicionar um elemento no vetor
-                    if (i < 3){
-                    lipideos_novo_elemento[i] = quant_lipideos[i];
-                    }else{
-                        lipideos_novo_elemento[i] = quant_adicionada;
-                    }
-                }
-            
-                for(int i = 0; i < 4; i++){
-                    printf("Quantidade de %s: %d\n", lipideos[i], lipideos_novo_elemento[i]);
-                }
+            } else {
+                printf("Tipo de alimento nao encontrado.\n");
             }
 
         }else{
