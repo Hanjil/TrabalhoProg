@@ -1,9 +1,10 @@
 #include <stdio.h>
 #include <string.h>
-//colocar toda parte dos alimentos em uma struct 
+//colocar tudo o que esta pedindo do teclado em uma struct
 
-//atualiza o estoque
-void atualizarEstoque(int estoque[], char alimentos[][20], const char tipo_alimento[]) {
+//funcao para atualizar o estoque
+void atualizarEstoque(int estoque[], char alimentos[][20], char tipo_alimento[]) {
+
     char nome_alimento[20];
 
     printf("Digite o nome do alimento: ");
@@ -14,7 +15,7 @@ void atualizarEstoque(int estoque[], char alimentos[][20], const char tipo_alime
     scanf("%d", &estoque_alterado);
 
     for (int i = 0; i < 3; i++) {
-        if (strcmp(nome_alimento, alimentos[i]) == 0) {
+        if (strcmp(nome_alimento, alimentos[i]) == 0) { //compara o elemento da variavel e o elemento presente no vetor
             estoque[i] = estoque_alterado;
             printf("Estoque atual de %s: %d\n", nome_alimento, estoque[i]);
             return;
@@ -22,16 +23,17 @@ void atualizarEstoque(int estoque[], char alimentos[][20], const char tipo_alime
     }
 }
 
-//verifica a quantidade de determinado elemento no estoque
+//funcao para verificar o estoque
 void verificarEstoque(const char tipo_alimento[], char alimentos[][20], int quantidades[], int tamanho) {
+
     char nome_alimento[20];
-    printf("Digite o nome do alimento: ");
+    printf("Digite o nome do alimento a ser procurado: ");
     scanf("%s", nome_alimento);
 
     int quantidade_em_estoque = -1;
 
     for (int i = 0; i < tamanho; i++) {
-        if (strcmp(nome_alimento, alimentos[i]) == 0) {
+        if (strcmp(nome_alimento, alimentos[i]) == 0) { //compara o elemento da variavel e o elemento presente no vetor
             quantidade_em_estoque = quantidades[i];
             break;
         }
@@ -45,7 +47,7 @@ void verificarEstoque(const char tipo_alimento[], char alimentos[][20], int quan
     }
 }
 
-//adiciona alimento no estoque
+//funcao para adicionar ao estoque
 void adicionar_alimento(char tipo_alimento[], char alimentos[4][20], int quantidades[], int *quantidade_atual) {
     char alimento_adicionado[20];
     printf("Digite o nome do alimento a ser adicionado: ");
@@ -59,7 +61,7 @@ void adicionar_alimento(char tipo_alimento[], char alimentos[4][20], int quantid
 
     int novo_elemento[4];
 
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 4; i++) { //estrutura de rep. para adicionar um elemento no vetor (de i = 3 passa para i = 4)
         if (i < 3) {
             novo_elemento[i] = quantidades[i];
         }else{
@@ -71,13 +73,14 @@ void adicionar_alimento(char tipo_alimento[], char alimentos[4][20], int quantid
         printf("Quantidade de %s: %d\n", alimentos[i], novo_elemento[i]);
     }
     
-    // atualiza as quantidades apenas se não ultrapassar o máximo
+    // atualizar as quantidades apenas se não ultrapassar o máximo
     if (*quantidade_atual < 4) {
         (*quantidade_atual)++;
     }
 }
 
 int main(){
+
     int opcao = 0;
     
     char carboidratos[3][20] = {"bolo", "pao", "biscoito"};
@@ -94,10 +97,11 @@ int main(){
         scanf("%d", &opcao);
 
         if (opcao == 0) {
-            break;  //Sai do loop se o usuário escolher 0
+            break;  //sai do loop se o usuário escolher 0
         }
 
         if(opcao == 1){
+
             char tipo_alimento[20];  
             printf("Digite o tipo de alimento (carboidrato, proteina, lipideo): ");
             scanf("%s", tipo_alimento);
@@ -117,15 +121,16 @@ int main(){
 
 
         }else if (opcao == 2){
+
             char tipo_alimento[20];  
             printf("Digite o tipo de alimento (carboidrato, proteina, lipideo): ");
             scanf("%s", tipo_alimento);
 
             if (strcmp(tipo_alimento, "carboidrato") == 0) {
-                verificarEstoque(tipo_alimento, quant_carboidratos, quant_carboidratos, 4);
+                verificarEstoque(tipo_alimento, carboidratos, quant_carboidratos, 4);
 
             } else if (strcmp(tipo_alimento, "proteina") == 0) {
-                verificarEstoque(tipo_alimento, quant_proteinas, quant_proteinas, 4);
+                verificarEstoque(tipo_alimento, proteinas, quant_proteinas, 4);
 
             } else if (strcmp(tipo_alimento, "lipideo") == 0) {
                 verificarEstoque(tipo_alimento, lipideos, quant_lipideos, 4);
@@ -136,6 +141,7 @@ int main(){
 
 
         }else if(opcao == 3){
+
             char tipo_alimento[20];  
             printf("Digite o tipo de alimento (carboidrato, proteina, lipideo): ");
             scanf("%s", tipo_alimento);
@@ -154,7 +160,7 @@ int main(){
                 adicionar_alimento(tipo_alimento, lipideos, quant_lipideos, &quant_atual_lipideos);
 
             } else {
-                printf("Tipo de alimento nao encontrado.\n");
+                printf("Tipo de alimento inválido.\n");
             }
 
         }else{
