@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <string.h>
 //colocar toda parte dos alimentos em uma struct 
+
+//atualiza o estoque
 void atualizarEstoque(int estoque[], char alimentos[][20], const char tipo_alimento[]) {
     char nome_alimento[20];
 
@@ -20,6 +22,7 @@ void atualizarEstoque(int estoque[], char alimentos[][20], const char tipo_alime
     }
 }
 
+//verifica a quantidade de determinado elemento no estoque
 void verificarEstoque(const char tipo_alimento[], char alimentos[][20], int quantidades[], int tamanho) {
     char nome_alimento[20];
     printf("Digite o nome do alimento: ");
@@ -42,6 +45,7 @@ void verificarEstoque(const char tipo_alimento[], char alimentos[][20], int quan
     }
 }
 
+//adiciona alimento no estoque
 void adicionar_alimento(char tipo_alimento[], char alimentos[4][20], int quantidades[], int *quantidade_atual) {
     char alimento_adicionado[20];
     printf("Digite o nome do alimento a ser adicionado: ");
@@ -67,7 +71,7 @@ void adicionar_alimento(char tipo_alimento[], char alimentos[4][20], int quantid
         printf("Quantidade de %s: %d\n", alimentos[i], novo_elemento[i]);
     }
     
-    // Atualizar as quantidades apenas se não ultrapassar o máximo
+    // atualiza as quantidades apenas se não ultrapassar o máximo
     if (*quantidade_atual < 4) {
         (*quantidade_atual)++;
     }
