@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-
+//colocar toda parte dos alimentos em uma struct 
 void atualizarEstoque(int estoque[], char alimentos[][20], const char tipo_alimento[]) {
     char nome_alimento[20];
 
