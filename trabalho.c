@@ -79,9 +79,59 @@ void adicionar_alimento(NomeAlimento alimentos[], int quantidades[], int *quanti
     }
 }
 
+void LerDados(NomeAlimento carboidratos[], int quant_carboidratos[],
+              NomeAlimento proteinas[], int quant_proteinas[],
+              NomeAlimento lipideos[], int quant_lipideos[])
+{
+    FILE *LerArquivo;
+
+    if ((LerArquivo = fopen("Estoque.txt", "r")) == NULL)
+    {
+        printf("Erro na leitura do estoque.");
+        return;
+    }
+
+    // Ler carboidratos
+    fscanf(LerArquivo, "%s %s %s", carboidratos[0].nome_alimento, carboidratos[1].nome_alimento, carboidratos[2].nome_alimento);
+    fscanf(LerArquivo, "%d %d %d", &quant_carboidratos[0], &quant_carboidratos[1], &quant_carboidratos[2]);
+
+    // Ler proteinas
+    fscanf(LerArquivo, "%s %s %s", proteinas[0].nome_alimento, proteinas[1].nome_alimento, proteinas[2].nome_alimento);
+    fscanf(LerArquivo, "%d %d %d", &quant_proteinas[0], &quant_proteinas[1], &quant_proteinas[2]);
+
+    // Ler lipideos
+    fscanf(LerArquivo, "%s %s %s", lipideos[0].nome_alimento, lipideos[1].nome_alimento, lipideos[2].nome_alimento);
+    fscanf(LerArquivo, "%d %d %d", &quant_lipideos[0], &quant_lipideos[1], &quant_lipideos[2]);
+
+    fclose(LerArquivo);
+}
+
+void SalvarDados(NomeAlimento carboidratos[], int quant_carboidratos[],
+                 NomeAlimento proteinas[], int quant_proteinas[],
+                 NomeAlimento lipideos[], int quant_lipideos[])
+{
+    FILE *SalvarArquivo;
+
+    if ((SalvarArquivo = fopen("Estoque.txt", "w")) == NULL)
+    {
+        printf("Erro no salvamento do estoque.");
+        return;
+    }
+
+    fprintf(SalvarArquivo, "%s %s %s\n", carboidratos[0], carboidratos[1], carboidratos[2]);
+    fprintf(SalvarArquivo, "%d %d %d\n", quant_carboidratos[0], quant_carboidratos[1], quant_carboidratos[2]);
+    fprintf(SalvarArquivo, "%s %s %s\n", proteinas[0], proteinas[1], proteinas[2]);
+    fprintf(SalvarArquivo, "%d %d %d\n", quant_proteinas[0], quant_proteinas[1], quant_proteinas[2]);
+    fprintf(SalvarArquivo, "%s %s %s\n", lipideos[0], lipideos[1], lipideos[2]);
+    fprintf(SalvarArquivo, "%d %d %d\n", quant_lipideos[0], quant_lipideos[1], quant_lipideos[2]);
+
+    fclose(SalvarArquivo);
+}
+
 int main() {
     int opcao = 0;
 
+    /*
     // Arrays of structs
     NomeAlimento carboidratos[3] = {{"bolo"}, {"pao"}, {"biscoito"}};
     int quant_carboidratos[3] = {10, 150, 120};
@@ -91,6 +141,16 @@ int main() {
 
     NomeAlimento lipideos[3] = {{"castanha"}, {"oleo"}, {"chocolate"}};
     int quant_lipideos[3] = {30, 70, 50};
+    */
+
+    NomeAlimento carboidratos[3];
+    int quant_carboidratos[3];
+    NomeAlimento proteinas[3];
+    int quant_proteinas[3];
+    NomeAlimento lipideos[3];
+    int quant_lipideos[3];
+
+    LerDados(carboidratos, quant_carboidratos, proteinas, quant_proteinas, lipideos, quant_lipideos);
 
     while (1) {
         printf("Selecione uma opcao:\n [1] Alterar o estoque\n [2] Consultar o estoque\n [3] Adicionar ao estoque\n [0] Sair\n");
@@ -161,6 +221,8 @@ int main() {
         } else {
             printf("Opcao invalida\n");
         }
+
+        SalvarDados(carboidratos, quant_carboidratos, proteinas, quant_proteinas, lipideos, quant_lipideos);
     }
     return 0;
 }

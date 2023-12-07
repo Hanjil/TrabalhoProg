@@ -1,0 +1,6 @@
+bolo pao biscoito
+10 150 120
+carne peixe ovo
+90 30 200
+castanha oleo chocolate
+30 70 50
